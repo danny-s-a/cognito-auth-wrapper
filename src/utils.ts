@@ -7,5 +7,7 @@ export function getUser(token: string, usernameKey: string = 'email'): string {
         return decodedToken[usernameKey];
     }
 
-    throw new Error(`Key "${usernameKey}" for username does not exist on token`);
+    throw new Error(
+        `Key "${usernameKey}" for username does not exist on token`
+    );
 }
