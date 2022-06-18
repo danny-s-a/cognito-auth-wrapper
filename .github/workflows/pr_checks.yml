@@ -50,7 +50,7 @@ jobs:
 
       - name: Get published version
         id: published
-        run: echo "::set-output name=version::$(npm view aws-lambda-response-helper version)"
+        run: echo "::set-output name=version::$(npm view simple-cognito-auth version)"
 
       - name: Ensure version has been upped
         if: steps.local.outputs.version == steps.published.outputs.version

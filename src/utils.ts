@@ -1,13 +1,11 @@
-export function getCognitoUser(username: string, clientId: string, poolId: string) {
-    const userPool = new CognitoUserPool({
-        UserPoolId: poolId,
-        ClientId: clientId
-    });
+import decode from 'jwt-decode';
 
-    const userDetails = {
-        Username: username,
-        Pool: userPool
-    };
+export function getUser(token: string, usernameKey: string = 'email'): string {
+    const decodedToken = decode(token) as any;
 
-    return new CognitoUser(userDetails);
+    if (decodedToken[usernameKey]) {
+        return decodedToken[usernameKey];
+    }
+
+    throw new Error(`Key "${usernameKey}" for username does not exist on token`);
 }

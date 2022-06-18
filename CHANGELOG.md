@@ -1,4 +1,4 @@
-# APPLICATION NAME
+# CHANGELOG
 
 All notable changes to this project will be documented in this file.
 
@@ -14,3 +14,5 @@ All notable changes to this project will be documented in this file.
 
 ### 1.0.0
 #### Added
+- Login method with flow for when new password is required
+- RefreshSession to enable user to get a new ID token once

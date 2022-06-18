@@ -1,31 +1,62 @@
-# AWS Lambda Response Helper
+# Simple Cognito Auth
 
 ## Overview
-Simple response library for use with AWS Lambda.
-Contains a collection of inbuilt response classes and an abstract Response base class that can be used to extend the library to suit implementers needs.
-Only param required by a Response object is the `event`, during instantiation the Response class uses this to log out information about the request for auditing purposes.
+Simple wrapper around the [amazon-cognito-identity-js](https://www.npmjs.com/package/amazon-cognito-identity-js) to save the duplication of code when creating new NodeJS-based services that handle user authentication
 
 <br> 
 
 ## Example
 
+### Login
 ```javascript
 import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
-import { Ok, BadRequest, errorHandler } from 'aws-lambda-response-helper';
+import { Ok, errorHandler, BadRequest } from 'aws-lambda-response-helper';
+import { attemptLogin, ILoginRequest } from 'simple-cognito';
 
-export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
+export const loginHandler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
     try {
         if (!event.body) {
             throw new BadRequest('Body not provided');
         }
 
-        // Do some stuff with the body
+        const loginRequest: ILoginRequest = JSON.parse(event.body);
+        const authResponse = await attemptLogin(
+            loginRequest,
+            '<your cognito client ID>',
+            '<your cognito pool ID>'
+        );
 
-        return Ok(event);
+        return new Ok(event, authResponse);
     } catch (err) {
-        return errorHandler(event, err);
+        return errorHandler(err, event);
     }
-}
+};
+```
+
+### Refresh Session
+```javascript
+import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
+import { Ok, errorHandler, BadRequest } from 'aws-lambda-response-helper';
+import { refreshSession, getUser } from './index';
+
+export const refreshSessionHandler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
+    try {
+        if (!event.queryStringParameters || !event.queryStringParameters.refresh_token) {
+            throw new BadRequest('Refresh token not provided, must provide query param "refresh_token"');
+        }
+
+        const authResponse = await refreshSession(
+            getUser(event.headers.Authorization!),
+            event.queryStringParameters.refresh_token,
+            '<your cognito client ID>',
+            '<your cognito pool ID>'
+        );
+
+        return new Ok(event, authResponse);
+    } catch (err) {
+        return errorHandler(err, event);
+    }
+};
 ```
 
 <br>
