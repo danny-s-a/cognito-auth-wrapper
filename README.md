@@ -11,7 +11,7 @@ Simple wrapper around the [amazon-cognito-identity-js](https://www.npmjs.com/pac
 ```javascript
 import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
 import { Ok, errorHandler, BadRequest } from 'aws-lambda-response-helper';
-import { attemptLogin, ILoginRequest } from 'simple-cognito-auth';
+import { attemptLogin, ILoginRequest } from 'cognito-auth-wrapper';
 
 export const loginHandler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
     try {

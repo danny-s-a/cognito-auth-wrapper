@@ -1,17 +1,17 @@
 {
-  "name": "simple-cognito-auth",
-  "version": "1.0.1",
-  "description": "Response library for use with AWS Lambda, with request auditing",
+  "name": "cognito-auth-wrapper",
+  "version": "1.0.0",
+  "description": "Simplified AWS Cognito auth flow wrapped around the amazon-cognito-identity-js package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "@danny-s-a",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danny-s-a/simple-cognito-auth.git"
+    "url": "git+https://github.com/danny-s-a/cognito-auth-wrapper.git"
   },
-  "homepage": "https://github.com/danny-s-a/simple-cognito-auth#readme",
-  "bugs": "https://github.com/danny-s-a/simple-cognito-auth/issues",
+  "homepage": "https://github.com/danny-s-a/cognito-auth-wrapper#readme",
+  "bugs": "https://github.com/danny-s-a/cognito-auth-wrapper/issues",
   "keywords": [
     "aws",
     "lambda",
