@@ -12,10 +12,6 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
-### 1.0.1
-#### Changed
-- Upped version to overcome npm registry caching issue
-
 ### 1.0.0
 #### Added
 - Login method with flow for when new password is required
