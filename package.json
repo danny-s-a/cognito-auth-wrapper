@@ -1,0 +1,48 @@
+{
+  "name": "simple-cognito",
+  "version": "1.0.0",
+  "description": "Response library for use with AWS Lambda, with request auditing",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "@danny-s-a",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danny-s-a/simple-cognito.git"
+  },
+  "homepage": "https://github.com/danny-s-a/simple-cognito#readme",
+  "bugs": "https://github.com/danny-s-a/simple-cognito/issues",
+  "keywords": [
+    "aws",
+    "lambda",
+    "cognito",
+    "auth",
+    "authentication",
+    "login",
+    "refresh session"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "coverage": "jest --collect-coverage",
+    "lint": "eslint . --ext .ts --fix=true",
+    "check:linting": "eslint . --ext .ts"
+  },
+  "dependencies": {
+    "amazon-cognito-identity-js": "^5.2.9",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.97",
+    "@types/jest": "^27.5.1",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@typescript-eslint/eslint-plugin": "^5.24.0",
+    "@typescript-eslint/parser": "^5.24.0",
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^28.1.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "ts-jest": "^28.0.2",
+    "typescript": "^4.6.4"
+  }
+}

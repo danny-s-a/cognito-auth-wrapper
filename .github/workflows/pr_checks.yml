@@ -1,0 +1,59 @@
+name: PR Checks
+
+on: pull_request
+
+jobs:
+  code_checks:
+    name: Code Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+        
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Audit Dependencies
+        run: npm audit
+
+      - name: Check Linting
+        run: npm run check:linting
+
+      - name: Check Build
+        run: npm run build
+      
+      - name: Check Tests & Coverage
+        run: npm run coverage
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  version_checks:
+    name: Version Update Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: Get local version
+        id: local
+        run: echo "::set-output name=version::$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
+
+      - name: Get published version
+        id: published
+        run: echo "::set-output name=version::$(npm view aws-lambda-response-helper version)"
+
+      - name: Ensure version has been upped
+        if: steps.local.outputs.version == steps.published.outputs.version
+        run: |
+          echo "::error::Version already exists"
+          exit 1

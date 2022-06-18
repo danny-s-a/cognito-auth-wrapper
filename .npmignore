@@ -1,0 +1,7 @@
+src/
+test/
+.github
+jest.config.js
+tsconfig.json
+.eslintrc.json
+sonar-project.properties
