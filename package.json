@@ -1,5 +1,5 @@
 {
-  "name": "simple-cognito",
+  "name": "simple-cognito-auth",
   "version": "1.0.0",
   "description": "Response library for use with AWS Lambda, with request auditing",
   "main": "dist/index.js",
@@ -8,10 +8,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danny-s-a/simple-cognito.git"
+    "url": "git+https://github.com/danny-s-a/simple-cognito-auth.git"
   },
-  "homepage": "https://github.com/danny-s-a/simple-cognito#readme",
-  "bugs": "https://github.com/danny-s-a/simple-cognito/issues",
+  "homepage": "https://github.com/danny-s-a/simple-cognito-auth#readme",
+  "bugs": "https://github.com/danny-s-a/simple-cognito-auth/issues",
   "keywords": [
     "aws",
     "lambda",
