@@ -8,10 +8,10 @@ export async function refreshSession(
     clientId: string,
     poolId: string): Promise<IAuthResponse> {
     return new Promise((resolve, reject) => {
-        const RefreshToken = new CognitoRefreshToken({ RefreshToken: refreshToken });
+        const cognitoRefreshToken = new CognitoRefreshToken({ RefreshToken: refreshToken });
         const cognitoUser = getCognitoUser(username, clientId, poolId);
 
-        cognitoUser.refreshSession(RefreshToken, (err, session) => {
+        cognitoUser.refreshSession(cognitoRefreshToken, (err, session) => {
             if (err) {
                 reject(err);
             } else {

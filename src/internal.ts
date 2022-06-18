@@ -6,10 +6,8 @@ export function getCognitoUser(username: string, clientId: string, poolId: strin
         ClientId: clientId
     });
 
-    const userDetails = {
+    return new CognitoUser({
         Username: username,
         Pool: userPool
-    };
-
-    return new CognitoUser(userDetails);
+    });
 }
