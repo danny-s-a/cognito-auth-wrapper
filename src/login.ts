@@ -28,16 +28,23 @@ export async function attemptLogin(
                     reject(err);
                 }
             },
-            newPasswordRequired: (userAttributes, requiredAttributes) => {
+            newPasswordRequired: () => {
                 if (loginRequest.new_password) {
-                    delete userAttributes.email_verified;
-                    requiredAttributes = userAttributes;
-
-                    cognitoUser.completeNewPasswordChallenge(loginRequest.new_password, requiredAttributes, {
-                        onSuccess: async (_data) => {
-                            resolve(await attemptLogin(loginRequest, clientId, poolId));
+                    cognitoUser.completeNewPasswordChallenge(loginRequest.new_password, undefined, {
+                        onSuccess: async () => {
+                            resolve(
+                                await attemptLogin(
+                                    {
+                                        username: loginRequest.username,
+                                        password: loginRequest.new_password!
+                                    },
+                                    clientId,
+                                    poolId
+                                )
+                            );
                         },
                         onFailure: (err) => {
+                            console.log('Error setting new pwd');
                             reject(err);
                         }
                     });

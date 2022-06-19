@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.0.2
+#### Fixed
+- `newPasswordRequired` flow, removed unrequired attribute params
+
 ### 1.0.1
 #### Changed
 - Now throws and Unauthorised on newpassword required
