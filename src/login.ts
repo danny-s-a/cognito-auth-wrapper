@@ -23,7 +23,7 @@ export async function attemptLogin(
             },
             onFailure: (err) => {
                 if (err.code && (err.code === 'UserNotFoundException' || err.code === 'NotAuthorizedException')) {
-                    reject(new Unauthorised());
+                    reject(new Unauthorised('Incorrect username or password'));
                 } else {
                     reject(err);
                 }
@@ -42,7 +42,7 @@ export async function attemptLogin(
                         }
                     });
                 } else {
-                    reject(new Error('New password required'));
+                    reject(new Unauthorised('New password required'));
                 }
             }
         });

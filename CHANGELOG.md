@@ -12,6 +12,11 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.0.1
+#### Changed
+- Now throws and Unauthorised on newpassword required
+- `Incorrect username or password` message added to onFailure for login
+
 ### 1.0.0
 #### Added
 - Login method with flow for when new password is required
