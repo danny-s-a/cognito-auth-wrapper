@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.0.3
+#### Security
+- Remediated jsonwebtoken vulnerability
+
 ### 1.0.2
 #### Fixed
 - `newPasswordRequired` flow, removed unrequired attribute params
